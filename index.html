@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preco do combustivel</title>
+    <script>
+        lerDados = {
+            entradda: function(){
+                let inp1 = c1.value;
+                let inp2 = c2.value;
+                let inp3 = c3.value;
+                let inp4 = c4.value;
+                return {inp1, inp2, inp3, inp4};
+            },
+            entrConv: function(){
+                let conv1 = parseFloat(lerDados.entradda().inp1);
+                let conv2 = parseFloat(lerDados.entradda().inp2);
+                let conv3 = parseFloat(lerDados.entradda().inp3);
+                let conv4 = parseFloat(lerDados.entradda().inp4);
+                return {conv1, conv2, conv3, conv4};
+            }
+        }
+        calc = {
+            gaso: function(){
+                let entrGaso = lerDados.entrConv();
+                let calcGaso = entrGaso.conv1 / entrGaso.conv3;
+                return calcGaso;
+            },
+            alco: function(){
+                let entrAlco = lerDados.entrConv();
+                let calcAlco = entrAlco.conv2 / entrAlco.conv4;
+                return calcAlco;
+            }
+        }
+        exibir = {
+            exi: function(){
+                let gaso = calc.gaso();
+                let alco = calc.alco();
+                if(gaso < alco){
+                    document.getElementById("c5").innerText = "Cosumo de Gasolina por KM " + gaso;
+                }else{
+                    document.getElementById("c5").innerText = "Consumo de Alcool por KM " + alco;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <center>
+            <h2>Comparar melhor consumo</h2>
+            <div><label>Preco da Gasolina</label></div> 
+            <div><input id="c1" type="text" placeholder="Gassolina"></div>
+            <br>
+            <div><label>Preco do Alcool</label></div>
+            <div><input id="c2" type="text" placeholder="Alcool"></div>
+            <br>
+            <div><label>Consumo de Gasolina por KM</label></div> 
+            <div><input id="c3" type="text" placeholder="KM/Gassolina"></div>
+            <br>
+            <div><label>Consumo de Alcool por KM</label></div>
+            <div><input id="c4" type="text" placeholder="KM/Alcool"></div>
+            <br>
+            <div><output id="c5">Resultado</output></div>
+            <br>
+            <div><button id="c6" onclick="exibir.exi()">qualCompensa</button></div>
+        </center>
+    </div>
+</body>
+</html>
